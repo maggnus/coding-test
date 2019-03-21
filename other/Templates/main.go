@@ -8,8 +8,7 @@ import (
 
 func fillTemplate(s string, m map[string]string) string {
 	for key := range m {
-		reg := "(\\$?<" + key + "\\$?>)"
-		r := regexp.MustCompile(reg)
+		r := regexp.MustCompile("\\$?<" + key + "\\$?>")
 		b := r.ReplaceAllFunc([]byte(s), func(k []byte) []byte {
 			t := string(k)
 			if strings.HasPrefix(t, "$<") || strings.HasPrefix(t, "$>") {
